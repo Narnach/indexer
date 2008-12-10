@@ -1,6 +1,8 @@
 = Indexer
 
-This is a new project. This readme was auto-generated.
+This implements a simple record level inverted index in Ruby.
+
+http://en.wikipedia.org/wiki/Inverted_index
 
 == Recent changes
 
