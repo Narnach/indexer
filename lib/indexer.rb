@@ -1,5 +1,4 @@
-class Indexer
-  def self.tokenize(string)
-    string.gsub(/[^\w\s]/,'').downcase.split(" ").uniq
-  end
+module Indexer
 end
+
+require 'indexer/core_ext/string'
