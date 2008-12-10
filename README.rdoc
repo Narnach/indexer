@@ -4,6 +4,10 @@ This implements a simple record level inverted index in Ruby.
 
 http://en.wikipedia.org/wiki/Inverted_index
 
+== Motivation
+
+This project is a simple learning experience for me, to discover more about document indexing and search. It is not a stealth attempt to implement the new open source Google-killer in Ruby.
+
 == Recent changes
 
 === Version 0.0.1
