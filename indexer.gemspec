@@ -13,14 +13,15 @@ Gem::Specification.new do |s|
   # Files
   root_files     = %w[MIT-LICENSE README.rdoc Rakefile indexer.gemspec]
   bin_files      = %w[indexer]
-  lib_files      = %w[indexer]
+  lib_files      = %w[indexer indexer/core_ext/string]
   test_files     = %w[]
-  spec_files     = %w[indexer]
+  spec_files     = lib_files
+  other_files    = %w[spec/spec_helper.rb]
   s.bindir       = "bin"
   s.require_path = "lib"
   s.executables  = bin_files
   s.test_files   = test_files.map {|f| 'test/%s_test.rb' % f} + spec_files.map {|f| 'spec/%s_spec.rb' % f}
-  s.files        = root_files + bin_files.map {|f| 'bin/%s' % f} + lib_files.map {|f| 'lib/%s.rb' % f} + s.test_files
+  s.files        = root_files + bin_files.map {|f| 'bin/%s' % f} + lib_files.map {|f| 'lib/%s.rb' % f} + s.test_files + other_files
 
   # rdoc
   s.has_rdoc         = true
