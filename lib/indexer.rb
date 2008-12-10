@@ -12,17 +12,21 @@ class Indexer
   def store(hash)
     hash.each do |key, string|
       tokens = string.tokenize
-      if old_document = documents.delete(key)
-        old_tokens = old_document.tokenize
-        old_tokens.each do |old_token|
-          index[old_token].delete(key)
-          index.delete(old_token) if index[old_token].size==0
-        end
-      end
+      delete_document(key)
       documents[key] = string
       tokens.each do |token|
         index[token] << key
       end
+    end
+    nil
+  end
+
+  def delete_document(key)
+    return unless document = documents.delete(key)
+    tokens = document.tokenize
+    tokens.each do |token|
+      index[token].delete(key)
+      index.delete(token) if index[token].size==0
     end
     nil
   end
