@@ -26,14 +26,24 @@ describe Indexer do
       }
     end
   end
-  
+
   describe "#score" do
-    it "should return all documents which contain the query" do
+    before(:each) do
       @indexer.store(:one =>  "First sentence")
       @indexer.store(:two => "Second sentence")
       @indexer.store(:chance => "Second chance")
-      @indexer.score("sentence").should == [:one, :two]
-      @indexer.score("second").should == [:chance, :two]
+    end
+
+    it "should return all documents which contain the query" do
+      @indexer.score("sentence").should == {1 => Set.new([:one, :two])}
+      @indexer.score("second").should == {1 => Set.new([:chance, :two])}
+    end
+
+    it "should return a score for each hit" do
+      @indexer.score("second sentence").should == {
+        1 => Set.new([:one, :chance]),
+        2 => Set.new([:two]),
+       }
     end
   end
 end

@@ -26,10 +26,15 @@ class Indexer
     end
     nil
   end
-  
+
   def score(query)
-    query.tokenize.map { |token| 
+    documents = query.tokenize.map { |token|
       index[token].to_a
-     }.flatten
+    }.flatten
+    scores = Hash.new { |hash, key| hash[key] = 0 }
+    documents.each {|document| scores[document] += 1}
+    results = Hash.new { |hash, key| hash[key] = Set.new }
+    scores.each {|doc, count| results[count] << doc}
+    results
   end
 end
