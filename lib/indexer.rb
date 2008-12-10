@@ -26,4 +26,10 @@ class Indexer
     end
     nil
   end
+  
+  def score(query)
+    query.tokenize.map { |token| 
+      index[token].to_a
+     }.flatten
+  end
 end
